@@ -8,10 +8,10 @@ namespace :foreman do
   task :export do
     on roles fetch(:foreman_roles) do
       opts = {
-        app: fetch(:application),
+        app: fetch(:foreman_app),
         log: File.join(shared_path, 'log'),
       }.merge fetch(:foreman_options, {})
-      
+
       opts.merge!(host.properties.fetch(:foreman_options) || {})
 
       execute(:mkdir, "-p", opts[:log])
